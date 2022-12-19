@@ -7,7 +7,7 @@ public class Data {
             C Z
             """;
 
-    public static final String part1 = """
+    public static final String input = """
             A Y
             C Y
             C X

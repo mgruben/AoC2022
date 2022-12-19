@@ -12,6 +12,7 @@ public class Day2 {
     }
 
     public static void main(String[] args) {
-        System.out.println(scoreMatches(Tokenizer.tokenizeMatches(Data.part1)));
+        System.out.println(scoreMatches(Tokenizer.tokenizePart1(Data.input)));
+        System.out.println(scoreMatches(Tokenizer.tokenizePart2(Data.input)));
     }
 }

@@ -7,13 +7,24 @@ import java.util.List;
 
 public class TestTokenizer {
     @Test
-    public void testTestInput() {
+    public void testTestInputPart1() {
         List<Match> expectedMatches = List.of(
                 new Match(Shape.Rock, Shape.Paper),
                 new Match(Shape.Paper, Shape.Rock),
                 new Match(Shape.Scissors, Shape.Scissors)
         );
 
-        Assertions.assertEquals(expectedMatches, Tokenizer.tokenizeMatches(Data.testInput));
+        Assertions.assertEquals(expectedMatches, Tokenizer.tokenizePart1(Data.testInput));
+    }
+
+    @Test
+    public void testTestInputPart2() {
+        List<Match> expectedMatches = List.of(
+                new Match(Shape.Rock, Shape.Rock),
+                new Match(Shape.Paper, Shape.Rock),
+                new Match(Shape.Scissors, Shape.Rock)
+        );
+
+        Assertions.assertEquals(expectedMatches, Tokenizer.tokenizePart2(Data.testInput));
     }
 }
