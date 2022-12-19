@@ -5,10 +5,18 @@ import org.junit.jupiter.api.Test;
 
 public class TestDay2 {
 
+    private static void testHelper(long expected, String input) {
+        long actual = Day2.scoreMatches(Tokenizer.tokenizeMatches(input));
+        Assertions.assertEquals(expected, actual);
+    }
+
     @Test
     public void testTestInput() {
-        long expected = 15L;
-        long actual = Day2.scoreMatches(Tokenizer.tokenizeMatches(Data.testInput));
-        Assertions.assertEquals(expected, actual);
+        testHelper(15L, Data.testInput);
+    }
+
+    @Test
+    public void testPart1(){
+        testHelper(14531L, Data.part1);
     }
 }
