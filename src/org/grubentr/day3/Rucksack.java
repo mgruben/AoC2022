@@ -9,5 +9,8 @@ public class Rucksack {
         second = new Compartment(contents.substring(halfway));
     }
 
+    public String getOverlap() {
+        return first.getOverlap(second);
+    }
 }
 

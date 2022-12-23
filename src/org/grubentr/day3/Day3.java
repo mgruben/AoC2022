@@ -1,12 +1,18 @@
 package org.grubentr.day3;
 
-import java.util.List;
 
 public class Day3 {
+
     public static void main(String[] args) {
-        List<Rucksack> rucksacks = Data.testInput
+        long part1 = Data.input
                 .lines()
                 .map(Rucksack::new)
-                .toList();
+                .map(Rucksack::getOverlap)
+                .flatMapToInt(String::chars)
+                .mapToObj(i -> (char) i)
+                .map(Priority::getPriority)
+                .reduce(Long::sum)
+                .orElse(0L);
+        System.out.println(part1);
     }
 }
