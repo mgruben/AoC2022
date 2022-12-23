@@ -18,14 +18,12 @@ public class Day3 {
     }
 
     public static long part2(String input) {
-        long sum = 0L;
-        for (List<String> groupString : Tokenizer.toGroups(input)) {
-            Group group = new Group(groupString.get(0),
-                    groupString.get(1),
-                    groupString.get(2));
-            sum += Priority.getPriority(group.getBadge());
-        }
-        return sum;
+        return Tokenizer.toGroups(input).stream()
+                .map(Group::new)
+                .map(Group::getBadge)
+                .map(Priority::getPriority)
+                .reduce(Long::sum)
+                .orElse(0L);
     }
 
     public static void main(String[] args) {

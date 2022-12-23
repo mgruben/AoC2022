@@ -1,6 +1,7 @@
 package org.grubentr.day3;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Group {
@@ -16,7 +17,11 @@ public class Group {
         return set;
     }
 
-    Group(String first, String second, String third) {
+    public Group(List<String> rucksacks) {
+        this(rucksacks.get(0), rucksacks.get(1), rucksacks.get(2));
+    }
+
+    public Group(String first, String second, String third) {
         a = fromString(first);
         b = fromString(second);
         c = fromString(third);
