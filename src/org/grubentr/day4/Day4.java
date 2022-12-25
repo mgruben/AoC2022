@@ -9,7 +9,15 @@ public class Day4 {
                 .count();
     }
 
+    public static long countAnyOverlap(String input) {
+        return input.lines()
+                .map(RangePair::fromString)
+                .filter(RangePair::overlapsAny)
+                .count();
+    }
+
     public static void main(String[] args) {
         System.out.println(Day4.countFullyContains(Data.input));
+        System.out.println(Day4.countAnyOverlap(Data.input));
     }
 }

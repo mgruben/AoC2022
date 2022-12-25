@@ -19,4 +19,8 @@ public class RangePair {
     public boolean fullyOverlaps() {
         return a.contains(b) || b.contains(a);
     }
+
+    public boolean overlapsAny() {
+        return a.atLeastPartiallyContains(b) || b.atLeastPartiallyContains(a);
+    }
 }

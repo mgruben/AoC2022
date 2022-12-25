@@ -10,4 +10,9 @@ public record Range(long start, long end) {
         return other.start >= this.start &&
                 other.end <= this.end;
     }
+
+    public boolean atLeastPartiallyContains(Range other) {
+        return this.start <= other.start && other.start <= this.end ||
+                this.start <= other.end && other.end <= this.end;
+    }
 }

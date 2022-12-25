@@ -20,6 +20,9 @@ public class TestRange {
 
         Assertions.assertFalse(a.contains(b));
         Assertions.assertFalse(b.contains(a));
+
+        Assertions.assertTrue(a.atLeastPartiallyContains(b));
+        Assertions.assertTrue(b.atLeastPartiallyContains(a));
     }
 
     @Test
@@ -29,6 +32,9 @@ public class TestRange {
 
         Assertions.assertTrue(a.contains(b));
         Assertions.assertFalse(b.contains(a));
+
+        Assertions.assertTrue(a.atLeastPartiallyContains(b));
+        Assertions.assertFalse(b.atLeastPartiallyContains(a));
     }
 
     @Test
