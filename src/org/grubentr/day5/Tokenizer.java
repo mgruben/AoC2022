@@ -22,20 +22,14 @@ public class Tokenizer {
         int to = sc.nextInt();
 
         return new OpInts(count, from, to);
-
     }
 
-
-
-    public static StackStore fromInputPart1(String input) {
-        // Iterate over the input line by line, with a line counter
-        Scanner sc = new Scanner(input);
-
+    private static StackStore buildStackStore(Scanner inputScanner) {
         // Store the first part of the input; it defines the initial stack state
         Stack<String> crateStrings = new Stack<>();
         boolean haveStacks = false;
         while (!haveStacks) {
-            String line = sc.nextLine();
+            String line = inputScanner.nextLine();
             if (line.length() == 0) {  // We've read all of the first part of the input
                 haveStacks = true;
             } else {
@@ -51,6 +45,15 @@ public class Tokenizer {
         while (!crateStrings.isEmpty()) {
             stackStore.addCrates(crateStrings.pop());
         }
+
+        return stackStore;
+    }
+
+
+
+    public static StackStore fromInputPart1(String input) {
+        Scanner sc = new Scanner(input);
+        StackStore stackStore = buildStackStore(sc);
 
         // The remainder of the input is operations to perform; do those.
         while (sc.hasNext()) {
@@ -63,29 +66,8 @@ public class Tokenizer {
     }
 
     public static StackStore fromInputPart2(String input) {
-        // Iterate over the input line by line, with a line counter
         Scanner sc = new Scanner(input);
-
-        // Store the first part of the input; it defines the initial stack state
-        Stack<String> crateStrings = new Stack<>();
-        boolean haveStacks = false;
-        while (!haveStacks) {
-            String line = sc.nextLine();
-            if (line.length() == 0) {  // We've read all of the first part of the input
-                haveStacks = true;
-            } else {
-                crateStrings.push(line);
-            }
-        }
-
-        // Play back the first part of the input to create a new StackStore
-        String lengthString = crateStrings.pop();
-        int size = Integer.parseInt(String.valueOf(lengthString.charAt(lengthString.length() - 2)));
-        StackStore stackStore = new StackStore(size);
-
-        while (!crateStrings.isEmpty()) {
-            stackStore.addCrates(crateStrings.pop());
-        }
+        StackStore stackStore = buildStackStore(sc);
 
         // The remainder of the input is operations to perform; do those.
         while (sc.hasNext()) {
