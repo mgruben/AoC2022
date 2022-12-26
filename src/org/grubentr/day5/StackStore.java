@@ -40,7 +40,7 @@ public class StackStore {
         }
     }
 
-    public void performOp(String line) {
+    public void performOpPart1(String line) {
         Scanner sc = new Scanner(line);  // Default matches on whitespace
 
         // "move"

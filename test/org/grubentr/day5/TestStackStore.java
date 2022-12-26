@@ -33,7 +33,7 @@ public class TestStackStore {
 
     @Test
     public void shouldBeCMZ() {
-        StackStore sut = Tokenizer.fromInput(Data.testInput);
+        StackStore sut = Tokenizer.fromInputPart1(Data.testInput);
 
         Assertions.assertEquals("CMZ", sut.peekTops());
     }

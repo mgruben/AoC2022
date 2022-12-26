@@ -3,7 +3,7 @@ package org.grubentr.day5;
 import java.util.Stack;
 
 public class Tokenizer {
-    public static StackStore fromInput(String input) {
+    public static StackStore fromInputPart1(String input) {
         // Iterate over the input line by line, with a line counter
         String[] lines = input.split("\n");
         int lineCounter = 0;
@@ -31,7 +31,7 @@ public class Tokenizer {
 
         // The remainder of the input is operations to perform; do those.
         while (lineCounter < lines.length) {
-            stackStore.performOp(lines[lineCounter++]);
+            stackStore.performOpPart1(lines[lineCounter++]);
         }
 
         // return the StackStore in its final state
