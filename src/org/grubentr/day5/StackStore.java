@@ -37,21 +37,7 @@ public class StackStore {
         }
     }
 
-    public void performOpPart1(String line) {
-        Scanner sc = new Scanner(line);  // Default matches on whitespace
-
-        // "move"
-        sc.next();
-        int count = sc.nextInt();
-
-        // "from"
-        sc.next();
-        int from = sc.nextInt();
-
-        // "to"
-        sc.next();
-        int to = sc.nextInt();
-
+    public void performOpPart1(int count, int from, int to) {
         for (int i = 0; i < count; i++) {
             Stack<Character> source = stacks.get(from);
             Stack<Character> destination = stacks.get(to);
@@ -60,21 +46,7 @@ public class StackStore {
         }
     }
 
-    public void performOpPart2(String line) {
-        Scanner sc = new Scanner(line); // Default matches on whitespace
-
-        // "move"
-        sc.next();
-        int count = sc.nextInt();
-
-        // "from"
-        sc.next();
-        int from = sc.nextInt();
-
-        // "to"
-        sc.next();
-        int to = sc.nextInt();
-
+    public void performOpPart2(int count, int from, int to) {
         Stack<Character> tmp = new Stack<>();
 
         for (int i = 0; i < count; i++) {

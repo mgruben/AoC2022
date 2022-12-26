@@ -4,6 +4,29 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Tokenizer {
+    private record OpInts(int count, int from, int to) {}
+
+    private static OpInts parseOp(String opString) {
+        Scanner sc = new Scanner(opString);  // Default matches on whitespace
+
+        // "move"
+        sc.next();
+        int count = sc.nextInt();
+
+        // "from"
+        sc.next();
+        int from = sc.nextInt();
+
+        // "to"
+        sc.next();
+        int to = sc.nextInt();
+
+        return new OpInts(count, from, to);
+
+    }
+
+
+
     public static StackStore fromInputPart1(String input) {
         // Iterate over the input line by line, with a line counter
         Scanner sc = new Scanner(input);
@@ -31,7 +54,8 @@ public class Tokenizer {
 
         // The remainder of the input is operations to perform; do those.
         while (sc.hasNext()) {
-            stackStore.performOpPart1(sc.nextLine());
+            OpInts opInts = parseOp(sc.nextLine());
+            stackStore.performOpPart1(opInts.count, opInts.from, opInts.to);
         }
 
         // return the StackStore in its final state
@@ -65,7 +89,8 @@ public class Tokenizer {
 
         // The remainder of the input is operations to perform; do those.
         while (sc.hasNext()) {
-            stackStore.performOpPart2(sc.nextLine());
+            OpInts opInts = parseOp(sc.nextLine());
+            stackStore.performOpPart2(opInts.count, opInts.from, opInts.to);
         }
 
         // return the StackStore in its final state
