@@ -37,25 +37,25 @@ public class StackStore {
         }
     }
 
-    public void performOpPart1(int count, int from, int to) {
-        for (int i = 0; i < count; i++) {
-            Stack<Character> source = stacks.get(from);
-            Stack<Character> destination = stacks.get(to);
+    public void performOpPart1(OpInts opInts) {
+        for (int i = 0; i < opInts.count(); i++) {
+            Stack<Character> source = stacks.get(opInts.from());
+            Stack<Character> destination = stacks.get(opInts.to());
 
             destination.push(source.pop());
         }
     }
 
-    public void performOpPart2(int count, int from, int to) {
+    public void performOpPart2(OpInts opInts) {
         Stack<Character> tmp = new Stack<>();
 
-        for (int i = 0; i < count; i++) {
-            Stack<Character> source = stacks.get(from);
+        for (int i = 0; i < opInts.count(); i++) {
+            Stack<Character> source = stacks.get(opInts.from());
             tmp.push(source.pop());
         }
 
         while (!tmp.isEmpty()) {
-            Stack<Character> destination = stacks.get(to);
+            Stack<Character> destination = stacks.get(opInts.to());
             destination.push(tmp.pop());
         }
     }

@@ -2,9 +2,9 @@ package org.grubentr.day5;
 
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.function.Consumer;
 
 public class Tokenizer {
-    private record OpInts(int count, int from, int to) {}
 
     private static OpInts parseOp(String opString) {
         Scanner sc = new Scanner(opString);  // Default matches on whitespace
@@ -49,17 +49,19 @@ public class Tokenizer {
         return stackStore;
     }
 
+    private static void performOps(Scanner sc, Consumer<OpInts> op) {
+        while (sc.hasNext()) {
+            OpInts opInts = parseOp(sc.nextLine());
+            op.accept(opInts);
+        }
+    }
+
 
 
     public static StackStore fromInputPart1(String input) {
         Scanner sc = new Scanner(input);
         StackStore stackStore = buildStackStore(sc);
-
-        // The remainder of the input is operations to perform; do those.
-        while (sc.hasNext()) {
-            OpInts opInts = parseOp(sc.nextLine());
-            stackStore.performOpPart1(opInts.count, opInts.from, opInts.to);
-        }
+        performOps(sc, stackStore::performOpPart1);
 
         // return the StackStore in its final state
         return stackStore;
@@ -68,12 +70,7 @@ public class Tokenizer {
     public static StackStore fromInputPart2(String input) {
         Scanner sc = new Scanner(input);
         StackStore stackStore = buildStackStore(sc);
-
-        // The remainder of the input is operations to perform; do those.
-        while (sc.hasNext()) {
-            OpInts opInts = parseOp(sc.nextLine());
-            stackStore.performOpPart2(opInts.count, opInts.from, opInts.to);
-        }
+        performOps(sc, stackStore::performOpPart2);
 
         // return the StackStore in its final state
         return stackStore;
