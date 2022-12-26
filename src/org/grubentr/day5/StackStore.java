@@ -1,9 +1,6 @@
 package org.grubentr.day5;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class StackStore {
     private final List<Stack<Character>> stacks;
@@ -60,6 +57,34 @@ public class StackStore {
             Stack<Character> destination = stacks.get(to);
 
             destination.push(source.pop());
+        }
+    }
+
+    public void performOpPart2(String line) {
+        Scanner sc = new Scanner(line); // Default matches on whitespace
+
+        // "move"
+        sc.next();
+        int count = sc.nextInt();
+
+        // "from"
+        sc.next();
+        int from = sc.nextInt();
+
+        // "to"
+        sc.next();
+        int to = sc.nextInt();
+
+        Stack<Character> tmp = new Stack<>();
+
+        for (int i = 0; i < count; i++) {
+            Stack<Character> source = stacks.get(from);
+            tmp.push(source.pop());
+        }
+
+        while (!tmp.isEmpty()) {
+            Stack<Character> destination = stacks.get(to);
+            destination.push(tmp.pop());
         }
     }
 }
