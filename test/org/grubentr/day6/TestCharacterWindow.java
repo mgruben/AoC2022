@@ -47,4 +47,25 @@ public class TestCharacterWindow {
     public void shouldBeEleven() {
         part1TestHelper(11, Data.testInput5);
     }
+
+    @Test
+    public void shouldBe19() {
+        part2TestHelper(19, Data.testInput1);
+    }
+
+    @Test
+    public void shouldBe23() {
+        part2TestHelper(23, Data.testInput2);
+        part2TestHelper(23, Data.testInput3);
+    }
+
+    @Test
+    public void shouldBe29() {
+        part2TestHelper(29, Data.testInput4);
+    }
+
+    @Test
+    public void shouldBe26() {
+        part2TestHelper(26, Data.testInput5);
+    }
 }
