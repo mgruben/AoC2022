@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestCharacterWindow {
 
-    private void testHelper(int expectedCharacterProcessed, String input) {
-        int windowSize = 4;
-
+    private void testHelper(int expectedCharacterProcessed, String input, int windowSize) {
         CharacterWindow sut = new CharacterWindow(input, windowSize);
 
         while (sut.canAdvance() && sut.getNumUnique() != windowSize) {
@@ -16,28 +14,37 @@ public class TestCharacterWindow {
 
         Assertions.assertEquals(expectedCharacterProcessed, sut.getNumCharactersProcessed());
     }
+
+    private void part1TestHelper(int expectedCharacterProcessed, String input) {
+        testHelper(expectedCharacterProcessed, input, 4);
+    }
+
+    private void part2TestHelper(int expectedCharacterProcessed, String input) {
+        testHelper(expectedCharacterProcessed, input, 14);
+    }
+
     @Test
     public void shouldBeSeven() {
-        testHelper(7, Data.testInput1);
+        part1TestHelper(7, Data.testInput1);
     }
 
     @Test
     public void shouldBeFive() {
-        testHelper(5, Data.testInput2);
+        part1TestHelper(5, Data.testInput2);
     }
 
     @Test
     public void shouldBeSix() {
-        testHelper(6, Data.testInput3);
+        part1TestHelper(6, Data.testInput3);
     }
 
     @Test
     public void shouldBeTen() {
-        testHelper(10, Data.testInput4);
+        part1TestHelper(10, Data.testInput4);
     }
 
     @Test
     public void shouldBeEleven() {
-        testHelper(11, Data.testInput5);
+        part1TestHelper(11, Data.testInput5);
     }
 }
