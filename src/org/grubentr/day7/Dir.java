@@ -1,7 +1,6 @@
 package org.grubentr.day7;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Dir {
     private final String name;
@@ -41,6 +40,10 @@ public class Dir {
 
     public Dir getDir(String name) {
         return subdirs.get(name);
+    }
+
+    public Collection<Dir> getChildren() {
+        return subdirs.values();
     }
 
     public void addFile(String name, long size) {
