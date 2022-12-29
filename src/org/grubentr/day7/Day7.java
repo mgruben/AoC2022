@@ -30,8 +30,8 @@ public class Day7 {
         long unused = 70_000_000L - root.size();
         long needed = 30_000_000L - unused;
 
-        List<Dir> dirsBiggerThanRoot = TreeSpider.findDir(new ArrayList<>(), root, dir -> dir.size() > needed);
-        return dirsBiggerThanRoot.stream().mapToLong(Dir::size).sorted().findFirst().orElseThrow();
+        List<Dir> dirsBiggerThanNeeded = TreeSpider.findDir(new ArrayList<>(), root, dir -> dir.size() > needed);
+        return dirsBiggerThanNeeded.stream().mapToLong(Dir::size).sorted().findFirst().orElseThrow();
     }
 
     public static void main(String[] args) {
