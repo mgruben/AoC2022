@@ -20,6 +20,11 @@ public class TestGrid {
 
     @Test
     public void testGrid() {
-        Assertions.assertEquals(21, grid.getNumVisible());
+        Assertions.assertEquals(21, grid.getNumVisibleFromOutside());
+    }
+
+    @Test
+    public void testScenic() {
+        Assertions.assertEquals(8L, grid.getHighestScenicScore());
     }
 }
