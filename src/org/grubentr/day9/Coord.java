@@ -7,6 +7,11 @@ package org.grubentr.day9;
  * @param y The y value; positive is up.
  */
 public record Coord(int x, int y) {
+    public static final Coord LEFT = new Coord(-1, 0);
+    public static final Coord RIGHT = new Coord(1, 0);
+    public static final Coord UP = new Coord(0, 1);
+    public static final Coord DOWN = new Coord(0, -1);
+
 
     /**
      * The result of adding this and some other coordinate.

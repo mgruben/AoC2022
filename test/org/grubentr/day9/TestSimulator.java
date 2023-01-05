@@ -4,15 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.grubentr.day9.Coord.*;
+
 public class TestSimulator {
-    private static final Coord LEFT = new Coord(-1, 0);
-    private static final Coord RIGHT = new Coord(1, 0);
-    private static final Coord UP = new Coord(0, 1);
-    private static final Coord DOWN = new Coord(0, -1);
     private static final Coord ZERO = new Coord(0, 0);
     private Simulator sut;
 

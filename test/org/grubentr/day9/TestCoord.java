@@ -3,11 +3,9 @@ package org.grubentr.day9;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.grubentr.day9.Coord.*;
+
 public class TestCoord {
-    private static final Coord LEFT = new Coord(-1, 0);
-    private static final Coord RIGHT = new Coord(1, 0);
-    private static final Coord UP = new Coord(0, 1);
-    private static final Coord DOWN = new Coord(0, -1);
     private static final Coord ZERO = new Coord(0, 0);
     @Test
     public void addingZeroShouldBeTheSameCoordinate() {
