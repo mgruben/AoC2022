@@ -20,7 +20,6 @@ public class Day9 {
             int count = sc.nextInt();
 
             for (int i = 0; i < count; i++) {
-                System.out.printf("Going %s%n", direction);
                 sim.update(direction);
             }
         }

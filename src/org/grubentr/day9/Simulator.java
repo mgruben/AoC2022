@@ -66,8 +66,6 @@ public class Simulator {
         for (int i = 1; i < knots.size(); i++) {
             next = knots.get(i);
             diff = next.diff(prev);
-            System.out.printf("Diff of %d: %s and %d: %s is %s%n",
-                    i, next, i-1, prev, diff);
 
             // If the diff is (0, 0), neither this nor any subsequent knot will update.
             if (diff.equals(C17)) {
@@ -76,7 +74,6 @@ public class Simulator {
 
             next = follow(next, diff);
             knots.set(i, next);
-            System.out.printf("Set %d to %s%n", i, next);
             prev = next;
         }
 
