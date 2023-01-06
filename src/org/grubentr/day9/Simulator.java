@@ -37,16 +37,14 @@ public class Simulator {
     private final static Coord C21 = new Coord(1, -1);
 
     private final Set<Coord> visited = new HashSet<>();
-    private final Coord start;
     private Coord head;
     private Coord tail;
 
     public Simulator() {
-        start = new Coord(0, 0);
         head = new Coord(0, 0);
         tail = new Coord(0, 0);
 
-        visited.add(start);
+        visited.add(tail);
     }
 
     public void update(Coord diff) {
