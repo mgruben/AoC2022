@@ -10,11 +10,11 @@ public class Simulator {
     By definition, a knot's diff from 17 is (0, 0).
     The other cases are enumerated as follows:
 
-       02 03 04
+    22 02 03 04 23
     01 13 14 15 05
     12 16 17 18 06
     11 19 20 21 07
-       10 09 08
+    25 10 09 08 24
      */
     private final static Coord C01 = new Coord(-2, 1);
     private final static Coord C02 = new Coord(-1, 2);
@@ -38,6 +38,12 @@ public class Simulator {
     private final static Coord C20 = new Coord(0, -1);
     private final static Coord C21 = new Coord(1, -1);
 
+    // new possible diffs for part2
+    private final static Coord C22 = new Coord(-2, 2);
+    private final static Coord C23 = new Coord(2, 2);
+    private final static Coord C24 = new Coord(2, -2);
+    private final static Coord C25 = new Coord(-2, -2);
+
     private final Set<Coord> visited = new HashSet<>();
     private final List<Coord> knots = new ArrayList<>();
 
@@ -49,23 +55,32 @@ public class Simulator {
         visited.add(knots.get(knots.size() - 1));
     }
 
-    public void update(Coord diff) {
+    public void update(Coord startingDiff) {
         // The head behaves specially; update it apart from the rest
         Coord prev = knots.get(0);
-        prev = prev.plus(diff);
+        prev = prev.plus(startingDiff);
         knots.set(0, prev);
 
         Coord next;
+        Coord diff;
         for (int i = 1; i < knots.size(); i++) {
             next = knots.get(i);
-            next = follow(next, next.diff(prev));
+            diff = next.diff(prev);
+            System.out.printf("Diff of %d: %s and %d: %s is %s%n",
+                    i, next, i-1, prev, diff);
+
+            // If the diff is (0, 0), neither this nor any subsequent knot will update.
+            if (diff.equals(C17)) {
+                break;
+            }
+
+            next = follow(next, diff);
             knots.set(i, next);
+            System.out.printf("Set %d to %s%n", i, next);
             prev = next;
         }
 
-        // After exiting the above for-loop, both `prev` and `next`
-        // point to the last Coord in the list.
-        visited.add(prev);
+        visited.add(knots.get(knots.size() - 1));
     }
 
     public Set<Coord> getVisited() {
@@ -89,6 +104,14 @@ public class Simulator {
             return next.plus(C19);
         } else if (diff.equals(C12)) {
             return next.plus(C16);
+        } else if (diff.equals(C22)) {
+            return next.plus(C13);
+        } else if (diff.equals(C23)) {
+            return next.plus(C15);
+        } else if (diff.equals(C24)) {
+            return next.plus(C21);
+        } else if (diff.equals(C25)) {
+            return next.plus(C19);
         } else if (diff.equals(C13) || diff.equals(C14) || diff.equals(C15)
                 || diff.equals(C16) || diff.equals(C17) || diff.equals(C18)
                 || diff.equals(C19) || diff.equals(C20) || diff.equals(C21)) {
