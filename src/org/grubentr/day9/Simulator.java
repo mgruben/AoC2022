@@ -41,9 +41,10 @@ public class Simulator {
     private final Set<Coord> visited = new HashSet<>();
     private final List<Coord> knots = new ArrayList<>();
 
-    public Simulator() {
-        knots.add(new Coord(0, 0));
-        knots.add(new Coord(0, 0));
+    public Simulator(int numKnots) {
+        for (int i = 0; i < numKnots; i++) {
+            knots.add(new Coord(0, 0));
+        }
 
         visited.add(knots.get(knots.size() - 1));
     }

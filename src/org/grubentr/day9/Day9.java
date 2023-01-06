@@ -11,8 +11,8 @@ public class Day9 {
             "D", Coord.DOWN
     );
 
-    public static int part1(String input) {
-        Simulator sim = new Simulator();
+    private static int solver(String input, int numKnots) {
+        Simulator sim = new Simulator(numKnots);
         Scanner sc = new Scanner(input);
 
         while (sc.hasNext()) {
@@ -27,7 +27,16 @@ public class Day9 {
         return sim.getVisited().size();
     }
 
+    public static int part1(String input) {
+        return solver(input, 2);
+    }
+
+    public static int part2(String input) {
+        return solver(input, 10);
+    }
+
     public static void main(String[] args) {
         System.out.println(part1(Data.input));
+        System.out.println(part2(Data.input));
     }
 }
