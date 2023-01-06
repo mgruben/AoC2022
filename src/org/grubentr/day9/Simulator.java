@@ -1,11 +1,13 @@
 package org.grubentr.day9;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Simulator {
     /*
-    By definition, the tail's diff from 17 is (0, 0).
+    By definition, a knot's diff from 17 is (0, 0).
     The other cases are enumerated as follows:
 
        02 03 04
@@ -37,49 +39,60 @@ public class Simulator {
     private final static Coord C21 = new Coord(1, -1);
 
     private final Set<Coord> visited = new HashSet<>();
-    private final Coord start;
-    private Coord head;
-    private Coord tail;
+    private final List<Coord> knots = new ArrayList<>();
 
     public Simulator() {
-        start = new Coord(0, 0);
-        head = new Coord(0, 0);
-        tail = new Coord(0, 0);
+        knots.add(new Coord(0, 0));
+        knots.add(new Coord(0, 0));
 
-        visited.add(start);
+        visited.add(knots.get(knots.size() - 1));
     }
 
     public void update(Coord diff) {
+        // The head behaves specially; update it apart from the rest
+        Coord head = knots.get(0);
         head = head.plus(diff);
-        updateTail(tail.diff(head));
-        visited.add(tail);
+        knots.set(0, head);
+
+        Coord next;
+        for (int i = 1; i < knots.size(); i++) {
+            next = knots.get(i);
+            next = follow(next, next.diff(head));
+            knots.set(i, next);
+            head = next;
+        }
+
+        // After exiting the above for-loop, both `head` and `next`
+        // point to the last Coord in the list.
+        visited.add(head);
     }
 
     public Set<Coord> getVisited() {
         return new HashSet<>(visited);
     }
 
-    private void updateTail(Coord diff) {
+    private Coord follow(Coord next, Coord diff) {
         if (diff.equals(C01) || diff.equals(C02)) {
-            tail = tail.plus(C13);
+            return next.plus(C13);
         } else if (diff.equals(C03)) {
-            tail = tail.plus(C14);
+            return next.plus(C14);
         } else if (diff.equals(C04) || diff.equals(C05)) {
-            tail = tail.plus(C15);
+            return next.plus(C15);
         } else if (diff.equals(C06)) {
-            tail = tail.plus(C18);
+            return next.plus(C18);
         } else if (diff.equals(C07) || diff.equals(C08)) {
-            tail = tail.plus(C21);
+            return next.plus(C21);
         } else if (diff.equals(C09)) {
-            tail = tail.plus(C20);
+            return next.plus(C20);
         } else if (diff.equals(C10) || diff.equals(C11)) {
-            tail = tail.plus(C19);
+            return next.plus(C19);
         } else if (diff.equals(C12)) {
-            tail = tail.plus(C16);
+            return next.plus(C16);
         } else if (diff.equals(C13) || diff.equals(C14) || diff.equals(C15)
                 || diff.equals(C16) || diff.equals(C17) || diff.equals(C18)
                 || diff.equals(C19) || diff.equals(C20) || diff.equals(C21)) {
-            // do nothing; tail doesn't update
+            // This coordinate shouldn't change; return the same one
+            return next;
         } else {
             throw new RuntimeException("Got unexpected diff: " + diff);
         }
