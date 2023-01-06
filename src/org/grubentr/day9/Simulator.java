@@ -28,6 +28,8 @@ public class Simulator {
     private final static Coord C10 = new Coord(-1, -2);
     private final static Coord C11 = new Coord(-2, -1);
     private final static Coord C12 = new Coord(-2, 0);
+
+    // Diffs that indicate that the next knot shouldn't update
     private final static Coord C13 = new Coord(-1, 1);
     private final static Coord C14 = new Coord(0, 1);
     private final static Coord C15 = new Coord(1, 1);
@@ -37,6 +39,8 @@ public class Simulator {
     private final static Coord C19 = new Coord(-1, -1);
     private final static Coord C20 = new Coord(0, -1);
     private final static Coord C21 = new Coord(1, -1);
+    private final static Set<Coord> NO_OP_COORDS = Set.of(
+            C13, C14, C15, C16, C17, C18, C19, C20, C21);
 
     // new possible diffs for part2
     private final static Coord C22 = new Coord(-2, 2);
@@ -52,6 +56,7 @@ public class Simulator {
             knots.add(new Coord(0, 0));
         }
 
+        // Visit the tail
         visited.add(knots.get(knots.size() - 1));
     }
 
@@ -63,12 +68,15 @@ public class Simulator {
 
         Coord next;
         Coord diff;
+        boolean visitedTail = true;
         for (int i = 1; i < knots.size(); i++) {
             next = knots.get(i);
             diff = next.diff(prev);
 
-            // If the diff is (0, 0), neither this nor any subsequent knot will update.
-            if (diff.equals(C17)) {
+            // If the diff between prev and next is close enough,
+            // neither this nor any subsequent knot will update; just break.
+            if (NO_OP_COORDS.contains(diff)) {
+                visitedTail = false;
                 break;
             }
 
@@ -77,7 +85,8 @@ public class Simulator {
             prev = next;
         }
 
-        visited.add(knots.get(knots.size() - 1));
+        // Visit the tail
+        if (visitedTail) visited.add(knots.get(knots.size() - 1));
     }
 
     public Set<Coord> getVisited() {
@@ -109,9 +118,7 @@ public class Simulator {
             return next.plus(C21);
         } else if (diff.equals(C25)) {
             return next.plus(C19);
-        } else if (diff.equals(C13) || diff.equals(C14) || diff.equals(C15)
-                || diff.equals(C16) || diff.equals(C17) || diff.equals(C18)
-                || diff.equals(C19) || diff.equals(C20) || diff.equals(C21)) {
+        } else if (NO_OP_COORDS.contains(diff)) {
             // This coordinate shouldn't change; return the same one
             return next;
         } else {
