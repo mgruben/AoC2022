@@ -8,4 +8,9 @@ public class TestDay9 {
     public void shouldBe13() {
         Assertions.assertEquals(13, Day9.part1(Data.testInput));
     }
+
+    @Test
+    public void shouldBe1() {
+        Assertions.assertEquals(1, Day9.part2(Data.testInput));
+    }
 }

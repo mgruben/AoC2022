@@ -14,8 +14,8 @@ public class TestSimulator {
     private Simulator sut;
 
     @BeforeEach
-    private void setup() {
-        sut = new Simulator();
+    public void setup() {
+        sut = new Simulator(2);
     }
 
     @Test

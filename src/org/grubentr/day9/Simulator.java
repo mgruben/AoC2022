@@ -51,21 +51,21 @@ public class Simulator {
 
     public void update(Coord diff) {
         // The head behaves specially; update it apart from the rest
-        Coord head = knots.get(0);
-        head = head.plus(diff);
-        knots.set(0, head);
+        Coord prev = knots.get(0);
+        prev = prev.plus(diff);
+        knots.set(0, prev);
 
         Coord next;
         for (int i = 1; i < knots.size(); i++) {
             next = knots.get(i);
-            next = follow(next, next.diff(head));
+            next = follow(next, next.diff(prev));
             knots.set(i, next);
-            head = next;
+            prev = next;
         }
 
-        // After exiting the above for-loop, both `head` and `next`
+        // After exiting the above for-loop, both `prev` and `next`
         // point to the last Coord in the list.
-        visited.add(head);
+        visited.add(prev);
     }
 
     public Set<Coord> getVisited() {
