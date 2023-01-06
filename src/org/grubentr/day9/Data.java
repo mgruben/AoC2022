@@ -2012,4 +2012,14 @@ public class Data {
             L 2
             D 16
             L 4""";
+
+    public static final String testInput2 = """
+            R 5
+            U 8
+            L 8
+            D 3
+            R 17
+            D 10
+            L 25
+            U 20""";
 }
