@@ -1,8 +1,8 @@
 package org.grubentr.day10;
 
-import java.util.function.IntFunction;
+import java.util.function.LongFunction;
 
-public abstract class Instruction implements IntFunction<Integer> {
+public abstract class Instruction implements LongFunction<Long> {
     private int duration;
 
     Instruction(int duration) {

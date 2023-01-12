@@ -5,10 +5,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class Noop extends Instruction {
     public Noop() {
-        super(0);
+        super(1);
     }
     @Override
-    public Integer apply(int i) {
+    public Long apply(long i) {
         return i;
     }
 }

@@ -10,7 +10,7 @@ public class TestInstruction {
         // Testing an arbitrary new implementation should test all implementations
         Instruction instruction = new Instruction(1) {
             @Override
-            public Integer apply(int i) {
+            public Long apply(long i) {
                 return null;
             }
         };

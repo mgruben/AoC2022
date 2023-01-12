@@ -11,7 +11,7 @@ public class Addx extends Instruction {
         this.arg = arg;
     }
     @Override
-    public Integer apply(int i) {
+    public Long apply(long i) {
         return i + arg;
     }
 }
