@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 public class TestCpu {
@@ -57,13 +58,15 @@ public class TestCpu {
         Assertions.assertEquals(0, addx.getDuration());
     }
 
+    private Iterator<Instruction> fromString(String string) {
+        return string.lines()
+                .map(Tokenizer::toInstruction)
+                .iterator();
+    }
+
     @Test
     public void testTinyInput() {
-        sut.program(
-                Data.tinyInput.lines()
-                        .map(Tokenizer::toInstruction)
-                        .iterator()
-        );
+        sut.program(fromString(Data.tinyInput));
 
         // noop
         sut.tick();
@@ -80,5 +83,35 @@ public class TestCpu {
         Assertions.assertEquals(4, sut.getX());
         sut.tick();
         Assertions.assertEquals(-1, sut.getX());
+    }
+
+    @Test
+    public void shouldBeNegative1() {
+        sut.program(fromString(Data.tinyInput));
+        sut.tickUntil(5);
+        Assertions.assertEquals(-1, sut.getX());
+    }
+
+    @Test
+    public void testTestInput() {
+        sut.program(fromString(Data.testInput));
+
+        sut.tickUntil(20);
+        Assertions.assertEquals(21, sut.getX());
+
+        sut.tickUntil(60);
+        Assertions.assertEquals(19, sut.getX());
+
+        sut.tickUntil(100);
+        Assertions.assertEquals(18, sut.getX());
+
+        sut.tickUntil(140);
+        Assertions.assertEquals(21, sut.getX());
+
+        sut.tickUntil(180);
+        Assertions.assertEquals(16, sut.getX());
+
+        sut.tickUntil(220);
+        Assertions.assertEquals(18, sut.getX());
     }
 }

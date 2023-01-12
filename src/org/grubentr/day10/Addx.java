@@ -14,4 +14,9 @@ public class Addx extends Instruction {
     public Long apply(long i) {
         return i + arg;
     }
+
+    @Override
+    public String toString() {
+        return "addx " + arg;
+    }
 }

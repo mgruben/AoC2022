@@ -11,4 +11,9 @@ public class Noop extends Instruction {
     public Long apply(long i) {
         return i;
     }
+
+    @Override
+    public String toString() {
+        return "noop";
+    }
 }

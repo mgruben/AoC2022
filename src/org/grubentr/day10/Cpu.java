@@ -25,8 +25,12 @@ public class Cpu {
         }
     }
 
-    public void tick(int count) {
-        for (int i = 0; i < count; i++) tick();
+    public void tick(int cycles) {
+        for (int i = 0; i < cycles; i++) tick();
+    }
+
+    public void tickUntil(int cycleCount) {
+        while (cycle < cycleCount) tick();
     }
 
     private void perform() {
