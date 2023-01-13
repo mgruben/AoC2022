@@ -96,22 +96,22 @@ public class TestCpu {
     public void testTestInput() {
         sut.program(fromString(Data.testInput));
 
-        sut.tickUntil(20);
+        sut.tickUntil(19); // The 20th cycle
         Assertions.assertEquals(21, sut.getX());
 
-        sut.tickUntil(60);
+        sut.tick(40); // 60th cycle
         Assertions.assertEquals(19, sut.getX());
 
-        sut.tickUntil(100);
+        sut.tick(40); // 100th cycle
         Assertions.assertEquals(18, sut.getX());
 
-        sut.tickUntil(140);
+        sut.tick(40); // 140th cycle
         Assertions.assertEquals(21, sut.getX());
 
-        sut.tickUntil(180);
+        sut.tick(40); // 180th cycle
         Assertions.assertEquals(16, sut.getX());
 
-        sut.tickUntil(220);
+        sut.tick(40); // 220th cycle
         Assertions.assertEquals(18, sut.getX());
     }
 }
