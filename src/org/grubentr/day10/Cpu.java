@@ -53,4 +53,8 @@ public class Cpu {
     public int getCycle() {
         return cycle;
     }
+
+    public boolean hasNext() {
+        return current != null;
+    }
 }

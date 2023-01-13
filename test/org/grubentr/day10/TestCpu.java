@@ -16,6 +16,12 @@ public class TestCpu {
     }
 
     @Test
+    public void shouldHaveNextAfterInstantiation() {
+        sut.program(Stream.of((Instruction) new Noop()).iterator());
+        Assertions.assertTrue(sut.hasNext());
+    }
+
+    @Test
     public void cpuShouldStartAt1() {
         Assertions.assertEquals(1, sut.getX());
     }
